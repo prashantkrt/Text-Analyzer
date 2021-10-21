@@ -34,9 +34,11 @@ export default function Form(props) {
     setText("");
   };
 
-  let copy = () => {
-    let copyclip = navigator.clipboard.writeText(text);
-    console.log(copyclip);
+  let copy = (event) => {
+    // let copyclip = event.textarea;
+    var copyclip = document.getElementById("textarea");
+    copyclip.select();
+    navigator.clipboard.writeText(copyclip.value);
     alert("Text Copied successfully");
   };
   let capitalize = () => {
@@ -49,8 +51,11 @@ export default function Form(props) {
 
   return (
     <>
-      <h1>{props.heading}</h1>
-      <div className="mb-3">
+      <div
+        className="container mb-3"
+        style={{ color: props.mode === "dark" ? "white" : "black" }}
+      >
+        <h1>{props.heading}</h1>
         <label htmlFor="textarea" className="form-label">
           Enter your text in textarea for analyzing
         </label>
@@ -80,15 +85,19 @@ export default function Form(props) {
         Clear
       </button>
 
-      <hr />
-
-      <h2 className="my-3">Your Text Summary</h2>
-      <p>
-        {text.split(" ").length} words & {text.length} characters
-      </p>
-      <p>{text.split(" ").length * 0.004} minutes time taken</p>
-      <h2>Preview</h2>
-      <p>{text}</p>
+      <hr style={{ color: props.mode === "dark" ? "white" : "black" }} />
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "dark" ? "white" : "black" }}
+      >
+        <h2>Your Text Summary</h2>
+        <p>
+          {text.split(" ").length} words & {text.length} characters
+        </p>
+        <p>{text.split(" ").length * 0.004} minutes time taken</p>
+        <h2>Preview</h2>
+        <p>{text}</p>
+      </div>
     </>
   );
 }
