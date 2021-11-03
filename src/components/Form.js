@@ -96,7 +96,7 @@ export default function Form(props) {
         </p>
         <p>{text.split(" ").length * 0.004} minutes time taken</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length > 0 ? text : "Enter your text to preview"}</p>
       </div>
     </>
   );

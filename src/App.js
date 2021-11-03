@@ -1,11 +1,21 @@
 import Form from "./components/Form";
 // import About from "./components/About";
 import Navbar from "./components/Navbar";
+import Alert from "./components/Alert";
+
 import React, { useState } from "react";
 
 function App() {
   const [mode, setmode] = useState("light");
   const [textcolor, settextcolor] = useState("dark");
+  const [alert, setalert] = useState(null);
+
+  const setAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+  };
 
   const toggle = () => {
     if (mode === "dark") {
@@ -29,6 +39,9 @@ function App() {
         togglemode={toggle}
         textcolor={textcolor}
       />
+
+      <Alert alert="This is custom alert" />
+
       <div className="container my-3">
         <Form heading="Text Analyzer" mode={mode} />
       </div>
@@ -39,5 +52,4 @@ function App() {
     </>
   );
 }
-
 export default App;
